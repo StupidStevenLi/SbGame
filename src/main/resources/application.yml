@@ -98,3 +98,5 @@ SLEEP_TIME: 500
 IdInDebtRedis: IdInDebtRedis
 Mail_TemplatePath: templates/mail_template.ftl
 Soul_BillBookPath: src/main/resources/static/images/soul.jpg
+
+# 提交，睡大觉
