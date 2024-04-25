@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>welcom</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<h1>Welcome</h1>
+<form id="form" name="form" action="/CollectorTest" method="get">
+   <div><input type="submit" value="压力测试QPS:1000"/></div>
+</form>
+<form action="" id="sendOne" class="fh5co-form animate-box" onsubmit="return false" method="post" data-animate-effect="fadeInLeft">
+    <h2>终端单次发送电表读数信息，不同用户不同终端大量访问读写并发场景，压测通过</h2>
+    <p1>输入规则:用户id:1~2000,耗电量为数字(例2024.24)</p1>
+    <div class="form-group">
+        <label for="user_id" class="sr-only">用电客户</label>
+        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="user_id" autocomplete="off">
+    </div>
+    <div class="form-group">
+        <label for="user_CurrentElectricityConsumption" class="sr-only">终端读数</label>
+        <input type="text" class="form-control" id="user_CurrentElectricityConsumption" name="user_CurrentElectricityConsumption"
+               placeholder="user_CurrentElectricityConsumption" autocomplete="off">
+    </div>
+    <div class="form-group">
+        <input type="button" onclick="sendOne()" value="Up my Data" class="btn btn-primary">
+    </div>
+</form>
+
+
+<form action="" id="payAndSendMail" class="fh5co-form animate-box" onsubmit="return false" method="post" data-animate-effect="fadeInLeft">
+    <h2>用户支付电费并邮件反馈，同一用户不同终端同时支付并发场景，防重压测通过</h2>
+    <p1>输入规则:用户id:1~2000,邮箱为正常自己邮箱(例yourmail@qq.com)</p1>
+    <div class="form-group">
+        <label for="mail_user_id" class="sr-only">用户</label>
+        <input type="text" class="form-control" id="mail_user_id" name="mail_user_id" placeholder="mail_user_id" autocomplete="off">
+    </div>
+    <div class="form-group">
+        <label for="mailString" class="sr-only">邮箱</label>
+        <input type="text" class="form-control" id="mailString" name="mailString"
+               placeholder="mailString" autocomplete="off">
+    </div>
+    <div class="form-group">
+        <input type="button" onclick="payAndSendMail()" value="Up my Data" class="btn btn-primary">
+    </div>
+</form>
+<script type="text/javascript">
+    function sendOne() {
+        var user_id = document.getElementById("user_id").value;
+        var user_CurrentElectricityConsumption = document.getElementById("user_CurrentElectricityConsumption").value;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/send",
+            contentType: "application/json",
+            data:JSON.stringify({
+                "user_id": user_id,
+                "user_CurrentElectricityConsumption": user_CurrentElectricityConsumption
+            }),
+            success: function (result) {
+                console.log("data is :" + result)
+                if (result.code == 200) {
+                    alert("登陆成功");
+                    // window.location.href = "../home/home_page.html";
+                }else {
+                    alert(result.message)
+                }
+            }
+        });
+    }
+
+    function payAndSendMail() {
+        var user_id = document.getElementById("mail_user_id").value;
+        var mail = document.getElementById("mailString").value;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/pay",
+            contentType: "application/json",
+            data:JSON.stringify({
+                "user_id": user_id,
+                "mail": mail
+            }),
+            success: function (result) {
+                console.log("data is :" + result)
+                if (result.code == 200) {
+                    alert("登陆成功");
+                    // window.location.href = "../home/home_page.html";
+                }else {
+                    alert(result.message)
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
