@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.artist.sbgame.entity.Mapper.ElectricityBillsMapper">
+    <insert id="insertElectricityBills">
+        INSERT
+        INTO `mybatis_example`.`electricity_bills`
+        (`user_id`, `electricity_bills`)
+        VALUES (#{userId}, #{electricityBills})
+        ON DUPLICATE KEY UPDATE `user_id`=#{userId}, `electricity_bills` = #{electricityBills};
+    </insert>
+    <delete id="deleteRecordFromElectricityBills">
+        DELETE FROM `mybatis_example`.`electricity_bills` WHERE (`user_id` = #{user_id});
+    </delete>
+</mapper>

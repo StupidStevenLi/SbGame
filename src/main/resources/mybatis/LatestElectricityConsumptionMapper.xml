@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于mapper接口类的全限定名,这样实现对应 -->
+<mapper namespace="com.artist.sbgame.entity.Mapper.LatestElectricityConsumptionMapper">
+    <select id="getLatestElectricityConsumption" resultType="com.artist.sbgame.entity.LatestElectricityConsumption">
+        SELECT `user_id` user_id,`latest_electricity_consumption` latest_electricity_consumption
+        FROM mybatis_example.latest_electricity_consumption_lec
+        where user_id = #{user_id};
+    </select>
+
+    <update id="updateLatestElectricityConsumption">
+        UPDATE `mybatis_example`.`latest_electricity_consumption_lec`
+        SET `latest_electricity_consumption` = #{user_CurrentElectricityConsumption}
+        WHERE (`user_id` = #{user_id});
+    </update>
+</mapper>
