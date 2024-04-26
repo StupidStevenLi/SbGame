@@ -3,9 +3,9 @@
   
 <h1>并发场景：</h1>
 <h3>1.大量不同终端，同一短时间内(分钟级别内，qps2000+）访问系统上传读数</h3>
-<p>Kafka主题发布订阅异步，解耦，削峰限流，RedisBitMap，Mysql，事务，线程池，高可用，高性能，最终一致性</p>
+<p>Kafka主题发布订阅异步，解耦，削峰限流，RedisBitMap，缓存，Mysql，事务，线程池，高可用，高性能，最终一致性</p>
 <h3>2.同一用户账号，同一时间内，访问系统进行缴费，防止重复支付</h3>
-<p>Redisson分布式锁RLock，RedissBitMap，事务，邮件应用，日志</p>
+<p>Redisson分布式锁RLock，RedissBitMap，缓存，事务，邮件应用，日志</p>
 
 <h1>技术栈与机器：</h1>
 <h1>Springboot3.2.5，Docker，Kafka，Redis，Redisson，Mysql8，Mybatis，Nginx，Jmeter，IntelijIDEA2023.3.4，JDK21.0.2，Windows11，Ubuntu23.10 x64(2G，2核，vultr)</h1>
