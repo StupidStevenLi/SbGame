@@ -106,7 +106,6 @@ logging:
     name: LoggerInfo.log #设置日志文件的名称
 
 TEST_TOPIC: test-topic
-SLEEP_TIME: 500
 IdInDebtRedis: IdInDebtRedis
 Mail_TemplatePath: templates/mail_template.ftl
 Soul_BillBookPath: src/main/resources/static/images/soul.jpg
