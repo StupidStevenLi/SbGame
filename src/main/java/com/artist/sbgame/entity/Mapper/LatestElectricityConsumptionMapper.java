@@ -1,6 +1,5 @@
 package com.artist.sbgame.entity.Mapper;
 
-import com.artist.sbgame.entity.ElectricityConsumption;
 import com.artist.sbgame.entity.LatestElectricityConsumption;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

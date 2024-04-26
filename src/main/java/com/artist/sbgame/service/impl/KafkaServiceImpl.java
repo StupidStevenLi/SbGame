@@ -15,8 +15,9 @@ public class KafkaServiceImpl implements KafkaService {
     private KafkaTemplate kafkaTemplate;
     @Value(value = "${TEST_TOPIC}")
     private String TEST_TOPIC;
+
     @Override
     public void makeElectricityConsumptionGetInKafka(ElectricityConsumption electricityConsumption) {
-        kafkaTemplate.send(TEST_TOPIC,0,Integer.toString(electricityConsumption.getUser_id()),electricityConsumption);
+        kafkaTemplate.send(TEST_TOPIC, 0, Integer.toString(electricityConsumption.getUser_id()), electricityConsumption);
     }
 }

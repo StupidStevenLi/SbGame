@@ -9,7 +9,8 @@
     <!-- 定义日志格式  -->
     <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%-30.30logger{30}] %msg%n"/>
     <!-- 高亮日志格式  -->
-    <property name="HIGHLIGHT_PATTERN" value="%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %green(%logger{50}) - %highlight(%msg) %n"/>
+    <property name="HIGHLIGHT_PATTERN"
+              value="%yellow(%d{yyyy-MM-dd HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %green(%logger{50}) - %highlight(%msg) %n"/>
 
     <!-- 控制台输出-高亮 -->
     <appender name="CONSOLE-WITH-HIGHLIGHT" class="ch.qos.logback.core.ConsoleAppender">

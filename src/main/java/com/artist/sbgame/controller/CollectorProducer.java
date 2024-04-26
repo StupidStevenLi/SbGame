@@ -11,7 +11,10 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +34,7 @@ public class CollectorProducer {
 
     @PostMapping("/collector")
     @ResponseBody
-    public String collect(@RequestBody ElectricityConsumption electricityConsumption){
+    public String collect(@RequestBody ElectricityConsumption electricityConsumption) {
         kafkaService.makeElectricityConsumptionGetInKafka(electricityConsumption);
         return electricityConsumption.toString();
     }
@@ -40,13 +43,13 @@ public class CollectorProducer {
     @ResponseBody
     public String sendOne(@RequestBody ElectricityConsumption electricityConsumption) {
         kafkaService.makeElectricityConsumptionGetInKafka(electricityConsumption);
-        log.info("单次"+electricityConsumption);
+        log.info("单次" + electricityConsumption);
         return electricityConsumption.toString();
     }
 
     @PostMapping("/pay")
     @ResponseBody
-    public String payAndSendMail(@RequestBody MailUser mailUser){
+    public String payAndSendMail(@RequestBody MailUser mailUser) {
         int user_id = mailUser.getUser_id();
         String mailId = mailUser.getMail();
         //事务
@@ -58,31 +61,31 @@ public class CollectorProducer {
                 if (redisService.isIdForBills(user_id)) {
                     redisService.deleteIdForBills(user_id);
                     daoService.deleteRecordFromElectricityBills(user_id);
-                    //mailUtil.sendTemplateMail(mailId,"电费支付成功","客户:"+user_id,"您的电费已支付成功");
+                    mailUtil.sendTemplateMail(mailId, "电费支付成功", "客户:" + user_id, "您的电费已支付成功");
                     log.info("发邮件告知redisson事务操作成功：支付成功" + mailId);
                 }
             }
         } catch (Exception ex) {
-            log.info("发邮件告知redisson事务操作失败：支付失败"+mailId);
+            log.info("发邮件告知redisson事务操作失败：支付失败" + mailId);
             try {
-                //mailUtil.sendTemplateMail(mailId,"电费支付失败","客户:"+user_id,"您的电费未支付成功");
+                mailUtil.sendTemplateMail(mailId, "电费支付失败", "客户:" + user_id, "您的电费未支付成功");
             } catch (Exception e) {
                 e.printStackTrace();
                 //throw new RuntimeException(e);
-            }
-            finally {
+            } finally {
                 ex.printStackTrace();
             }
-        }
-        finally {
+        } finally {
             rLock.unlock();
             log.info("释放锁");
         }
         log.info("payAndSendMail支付并且发了对应邮件：支付操纵流程结束");
-        return mailId+"邮件发送完成";
+        return mailId + "邮件发送完成";
     }
+
     @GetMapping("/")
-    public String welcome(){
+    public String welcome() {
         return "Index";
     }
+
 }

@@ -18,12 +18,13 @@ import java.util.concurrent.CountDownLatch;
 public class Consumer {
     @Autowired
     private ThreadUtil threadUtil;
+
     @KafkaListener(id = "oneConsumerManyThread",
-                   groupId = "defaultConsumerGroup",
-                   topicPartitions = {@TopicPartition(topic = "test-topic",partitions = "0" )}
+            groupId = "defaultConsumerGroup",
+            topicPartitions = {@TopicPartition(topic = "test-topic", partitions = "0")}
     )
-    public void consumerListener(ConsumerRecords<?,?> records) {
-        log.info(Thread.currentThread().getName()+"--消息监听开始：本次消息数量"+ records.count());
+    public void consumerListener(ConsumerRecords<?, ?> records) {
+        log.info(Thread.currentThread().getName() + "--消息监听开始：本次消息数量" + records.count());
         // 计数器
         CountDownLatch countDownLatch = new CountDownLatch(records.count());
         for (ConsumerRecord<?, ?> record : records) {
@@ -34,6 +35,6 @@ public class Consumer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        log.info(Thread.currentThread().getName()+"--消息监听结束：线程池任务完成");
+        log.info(Thread.currentThread().getName() + "--消息监听结束：线程池任务完成");
     }
 }

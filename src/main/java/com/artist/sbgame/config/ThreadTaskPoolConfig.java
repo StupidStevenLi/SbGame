@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.AsyncTaskExecutor;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.ThreadPoolExecutor;
@@ -17,7 +16,7 @@ public class ThreadTaskPoolConfig {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
         // 获取cpu线程数
         int cpuNum = Runtime.getRuntime().availableProcessors();
-        log.info("获取cpu线程数"+Runtime.getRuntime().availableProcessors());
+        log.info("获取cpu线程数" + Runtime.getRuntime().availableProcessors());
         // 核心线程数
         threadPoolTaskExecutor.setCorePoolSize(cpuNum / 2);
         // 最大线程数
@@ -25,7 +24,7 @@ public class ThreadTaskPoolConfig {
         // 线程空闲后的最大存活时间 单位 秒
         threadPoolTaskExecutor.setKeepAliveSeconds(2);
         // 队列大小
-        threadPoolTaskExecutor.setQueueCapacity(cpuNum * 200 );
+        threadPoolTaskExecutor.setQueueCapacity(cpuNum * 200);
         // 线程前置名称
         threadPoolTaskExecutor.setThreadNamePrefix("线程池-AsyncTaskExecutor-ThreadPoolTask-");
         //当调度器shutdown被调用时等待当前被调度的任务完成

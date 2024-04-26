@@ -1,13 +1,12 @@
 package com.artist.sbgame.dao.impl;
 
+import com.artist.sbgame.dao.DaoService;
 import com.artist.sbgame.entity.ElectricityConsumption;
 import com.artist.sbgame.entity.LatestElectricityConsumption;
 import com.artist.sbgame.entity.Mapper.ElectricityBillsMapper;
 import com.artist.sbgame.entity.Mapper.LatestElectricityConsumptionMapper;
-import com.artist.sbgame.dao.DaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -25,12 +24,12 @@ public class DaoServiceImpl implements DaoService {
 
     @Override
     public void updateLatestElectricityConsumption(ElectricityConsumption ec) {
-        latestElectricityConsumptionMapper.updateLatestElectricityConsumption(ec.getUser_id(),ec.getUser_CurrentElectricityConsumption());
+        latestElectricityConsumptionMapper.updateLatestElectricityConsumption(ec.getUser_id(), ec.getUser_CurrentElectricityConsumption());
     }
 
     @Override
     public void insertElectricityBills(int userId, BigDecimal electricityBills) {
-        electricityBillsMapper.insertElectricityBills(userId,electricityBills);
+        electricityBillsMapper.insertElectricityBills(userId, electricityBills);
     }
 
     @Override

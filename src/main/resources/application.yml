@@ -3,11 +3,23 @@ server:
 
 spring:
   mail:
+    port: 465
     # 你的邮箱，发邮件的邮箱
     username: artist.li@qq.com
     # 你的授权码，邮箱里面设置->POP3/SMTP/IMAP
     password: mxifqkkmplrlebjg
     host: smtp.qq.com
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            port: 465
+          starttls:
+            enable: true
+            require: true
+          timeout: 2000
   thymeleaf:
     prefix: classpath:/templates/
     # suffix: .html
@@ -75,7 +87,7 @@ spring:
 #  kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test-topic2 --from-beginning
 
 mybatis:
-  configuration:  # setting配置
+  configuration: # setting配置
     auto-mapping-behavior: full
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
@@ -85,9 +97,9 @@ mybatis:
 #日志配置
 logging:
   config: classpath:logback-spring.xml  #指定项目启动的时，读取logback-spring.xml日志配置文件,文件名最好不要使用logback.xml
-#  level: #配置指定包的路径下应用程序的日志记录和日志级别。
-#    root: info
-#    org.springframework: warn
+  #  level: #配置指定包的路径下应用程序的日志记录和日志级别。
+  #    root: info
+  #    org.springframework: warn
   file:
     path: src/main/resources/LoggerInfoFile
     #D:\sinux_2023\project\phm\724_3\exe\logs #设置日志输出路径

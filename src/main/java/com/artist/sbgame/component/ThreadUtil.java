@@ -21,19 +21,19 @@ public class ThreadUtil {
     @Async("asyncTaskExecutor")
     public void workerTaskAsync(ConsumerRecord<?, ?> record, CountDownLatch countDownLatch) {
         log.info("消费者workerTaskAsync--"
-                +Thread.currentThread().getName()
-                +"消费开始："
-                +"|offset:"+record.offset());
-        ElectricityConsumption ec = (ElectricityConsumption)record.value();
+                + Thread.currentThread().getName()
+                + "消费开始："
+                + "|offset:" + record.offset());
+        ElectricityConsumption ec = (ElectricityConsumption) record.value();
         //事务
         atomicUtil.atomicDataOptions(ec);
         /**
          * 异步发邮件
          */
         log.info("消费者workerTaskAsync--"
-                +Thread.currentThread().getName()
-                +"消费完成:"
-                +record.key()+"存在发邮件,不存在不发邮件");
+                + Thread.currentThread().getName()
+                + "消费完成:"
+                + record.key() + "存在发邮件,不存在不发邮件");
         countDownLatch.countDown();
     }
 }

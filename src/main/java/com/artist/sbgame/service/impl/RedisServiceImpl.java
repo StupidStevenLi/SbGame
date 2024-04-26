@@ -16,17 +16,17 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public void setIdForBills(Long key) {
-        stringRedisTemplate.opsForValue().setBit(IdInDebtRedis, key,true);
+        stringRedisTemplate.opsForValue().setBit(IdInDebtRedis, key, true);
     }
 
     @Override
-    public  Boolean isIdForBills(long id) {
+    public Boolean isIdForBills(long id) {
         return stringRedisTemplate.opsForValue().getBit(IdInDebtRedis, id);
     }
 
     @Override
     public void deleteIdForBills(int key) {
-        stringRedisTemplate.opsForValue().setBit(IdInDebtRedis, key,false);
+        stringRedisTemplate.opsForValue().setBit(IdInDebtRedis, key, false);
     }
 
 }
