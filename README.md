@@ -9,7 +9,7 @@
 <p>Redisson分布式锁RLock，RedissBitMap，缓存，事务，Nginx，邮件应用，幂等性，日志，打包部署，Ubuntu</p>
 
 <h1>技术栈与机器：</h1>
-<h1>Springboot3.2.5，SpringMVC，Mybatis，Docker，Zookeeper，Kafka，Redis，Redisson，Mysql8，Nginx，Jmeter，IntelijIDEA2023.3.4，jdk_21.0.2，Windows11，Ubuntu23.10 x64(2G，2核，vultr)</h1>
+<h1>Springboot3.2.5，SpringMVC，Mybatis，Docker，Zookeeper，Kafka，Redis，Redisson，Mysql8，Nginx，Jmeter，Maven，IntelijIDEA2023.3.4，jdk_21.0.2，Windows11，Ubuntu23.10 x64(2G，2核，vultr)</h1>
 <h3>项目已给出Mysql创建文件，一定要jdk_21.0.2配置好相关环境(我是用jdk_21.0.2开发的，jdk_21.0.3上部署有问题，大佬赐教)，项目即可运行</h3>
 
 <p>辅佐：Everything，Bandizip，Xterminal，SublineText，MysqlWorkbench，Git(Github)，PostmanAgent，DeepL，MicrosoftEdge，抖音TikTok，BiliBili，Google ,Clash...，阿里云，腾讯云，华为云，百度云，知乎CSDN博客园等各种论坛...酷狗，网易云，Pornhub等各种视频网站...英雄联盟，Epic...</p>
